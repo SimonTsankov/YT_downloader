@@ -55,24 +55,3 @@ while True:
     if event=="Clear":
         video_list.clear()
         window['-LIST-'].update(video_list)
-
-
-
-
-video_list=[]
-path = input("path:")
-print("enter urls ")
-while True:
-    url=input("")
-    if url== "STOP" or url == "stop":
-        break;
-    video_list.append(url)
-for v in video_list:
-    print(v)
-for x, video in enumerate( video_list):
-    v= YouTube(video)
-
-    stream = v.streams.get_by_itag(22)
-    print(f"Downloading video {x}...")
-    stream.download(path)
-    print("Done")
