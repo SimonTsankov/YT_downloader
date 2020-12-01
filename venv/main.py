@@ -16,7 +16,7 @@ file_list_column=[
 ]
 image_viewer_column = [
     [sg.Text("Path where to save files to:")],
-    [sg.In(size=(25, 1), key="-PATH-") ],
+    [sg.In(size=(25, 1), key="-PATH-")],
     [sg.Button("ADD URL")],
     [sg.Button("DOWNLOAD")],
     [sg.Button("Clear")],
@@ -35,8 +35,6 @@ window = sg.Window("Image Viewer", layout)
 
 while True:
     event, values = window.read()
-    if values["-PATH-"]=="":
-        window["-PATH-"].update("D:\Pictures\Camera Roll")
     if event == "Exit" or event == sg.WIN_CLOSED:
         break
     if event=="ADD URL":
@@ -49,7 +47,7 @@ while True:
             for x, video in enumerate(video_list):
                 v = YouTube(video)
                 stream = v.streams.get_by_itag(22)
-                print("Downloading video ",x)
+                print(f"Downloading video {x}...")
                 stream.download(path)
                 print("Done")
         except:
@@ -57,4 +55,3 @@ while True:
     if event=="Clear":
         video_list.clear()
         window['-LIST-'].update(video_list)
-
